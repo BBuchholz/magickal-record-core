@@ -1,4 +1,16 @@
 {
-    "name": "@entomdt/magickal-record-core",
-    "version": "0.2.0"
+  "name": "@entomdt/magickal-record-core",
+  "version": "0.2.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "author": "Brent Buchholz",
+  "license": "MIT",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "express": "^4.17.1",
+    "mocha": "^8.2.1"
+  }
 }
