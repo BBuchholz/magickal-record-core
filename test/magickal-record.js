@@ -2,58 +2,61 @@ var expect      = require("chai").expect;
 var magickalRecord = require("../app/magickal-record");
 
 describe("Magickal Record", function() {
-
+ 
     const myMagickalRecord = new magickalRecord();
     var testEntry;
+    var testWxrd;
 
     beforeEach(function(){
-        myMagickalRecord.clearAllEntries();
-        testEntry = myMagickalRecord.createEntry("A test entry");
+        //myMagickalRecord.clearAllEntries();
+        //testEntry = myMagickalRecord.createEntry("A test entry");
+        //testWxrd = myMagickalRecord.tagEntry(testEntry.uuid, "A Test Tag");
     });
+
 
     describe("Record Entries", function() {
 
-        it("should have an entry UUID", function(){
+/////////MOVED TO entry-log.js////////////////
+    //     it("should have an entry UUID", function(){
 
-            expect(testEntry).to.have.property("uuid");
+    //         expect(testEntry).to.have.property("uuid");
             
-        });
+    //     });
 
-        it("should return a list of parent records", function(){
+    //     it("should return a list of parent records", function(){
 
-            expect(testEntry).to.have.property("parentRecords");
+    //         expect(testEntry).to.have.property("parentRecords");
             
-        });
+    //     });
 
-        it("should have a source UUID", function(){
-            // The source of this entry (a secondary source 
-            // if it’s copied from somewhere, otherwise the
-            // current user, if signed into the Magickal record)
+    //     it("should have a source UUID", function(){
+    //         // The source of this entry (a secondary source 
+    //         // if it’s copied from somewhere, otherwise the
+    //         // current user, if signed into the Magickal record)
             
-            expect(testEntry).to.have.property("sourceUuid");
-        });
+    //         expect(testEntry).to.have.property("sourceUuid");
+    //     });
 
-        it("should have an entry title", function(){
+    //     it("should have an entry title", function(){
 
-            expect(testEntry).to.have.property("title");
-        });
+    //         expect(testEntry).to.have.property("title");
+    //     });
 
-        it("should have an entry body", function(){
+    //     it("should have an entry body", function(){
 
-            expect(testEntry).to.have.property("body");
-        });
+    //         expect(testEntry).to.have.property("body");
+    //     });
 
-        it("should return an entered-on timestamp", function(){
+    //     it("should return an entered-on timestamp", function(){
 
-            //make this a tag
-            
-            expect(testEntry).to.have.property("enteredOn");
-        });
+    //         expect(testEntry).to.have.property("enteredAt");
 
-        it("should return a list of Wxrd Tags", function(){
+    //     });
 
-            expect(testEntry).to.have.property("wxrdTags");
-        });
+    //     it("should return a list of Wxrd Tags", function(){
+
+    //         expect(testEntry).to.have.property("wxrdTags");
+    //     });
 
     });
 
@@ -140,6 +143,7 @@ describe("Magickal Record", function() {
 
     describe("Record Browser", function() {
         
+        
         it("should include basic meta operations in the operations list", function(){
             
             //TODO fill in test
@@ -153,19 +157,16 @@ describe("Magickal Record", function() {
         
         });
 
-        it("should return the created entry when creating new entry", function(){
 
-            var contentToCreate = "this is a new entry";
-            var newEntry = myMagickalRecord.createEntry(contentToCreate);
+
+        it("should return the created tag when tagging an entry", function(){
             
-            expect(newEntry.body).to.equal(contentToCreate);
+            //TODO implement 
         });
 
-        it("should return previously created entry when passed generated uuid", function(){
-
-            var newlyCreatedEntry = myMagickalRecord.createEntry(testEntry.content);
-            var retrievedEntry = myMagickalRecord.getEntryByUuid(newlyCreatedEntry.uuid);
-            expect(testEntry.content).to.equal(retrievedEntry.content);
+        it("should return the tag when passed a uuid for the tag", function(){
+    
+            //TODO implement 
         });
 
         it("should get sources list", function() {
