@@ -1,9 +1,13 @@
 const { v4: uuidv4 } = require('uuid');
-const allEntries = new Map();
+const allSourceIdentities = new Map();
 
-function entryLog() {
+function sourceBook() {
 
-    this.createEntry = function(content) {
+    this.getSourceByAlias = function(){
+
+    };
+
+    this.storeIdentity = function(sourceIdentity) {
 
         const newUuid = generateUuid();
 
@@ -13,7 +17,8 @@ function entryLog() {
             sourceUuid: "",
             title: "",            
             parentRecords: new Map(),
-            wxrdTags: new Map(),  
+            wxrdTags: new Map(),
+						alias: "",
             enteredAt: this.generateTimestamp()
         };
 
@@ -27,14 +32,14 @@ function entryLog() {
         return "";
     }
 
-    this.getEntryByUuid = function(uuid) {
+    this.getSourceIdentityByUuid = function(uuid) {
 
-        return allEntries.get(uuid);
+        return allSourceIdentities.get(uuid);
     };
     
-    this.clearAllEntries = function() {
+    this.clearAllSourceIdentities = function() {
 
-        allEntries.clear();
+        allSourceIdentities.clear();
     };
 
     function generateUuid(){
@@ -43,4 +48,4 @@ function entryLog() {
     }
 }
 
-module.exports = entryLog;
+module.exports = sourceBook;
