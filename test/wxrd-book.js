@@ -1,9 +1,9 @@
 var expect = require("chai").expect;
-var wxrdBook = require("../app/wxrd-book");
+const WxrdBook = require("../app/wxrd-book");
 
-describe("Wxrd Tags", function() {
+describe("Wxrd Book", function() {
     
-    const myWxrdBook = new wxrdBook();
+    const myWxrdBook = new WxrdBook();
     var testWxrd;
     
     beforeEach(function(){
@@ -19,8 +19,12 @@ describe("Wxrd Tags", function() {
 
     it("should have an ordered list of aliases", function(){
 
-        expect(testWxrd).to.have.property("aliases");
+        expect(testWxrd).to.have.property("getAllAliases");
         
+    });
+
+    it("should have a metadata property for 'alias'", function(){
+        //TODO fill in test (want to change it from current implementation, alias should just be another bit of metadata)
     });
 
 
@@ -36,6 +40,11 @@ describe("Wxrd Tags", function() {
 
         const newRetrieval = myWxrdBook.getWxrdsByAlias("A New Alias")[0];
         const defaultRetrieval = myWxrdBook.getWxrdsByAlias("A Default Alias")[0];
+
+        console.log("new: " + JSON.stringify(newRetrieval));
+        console.log("default: " + JSON.stringify(defaultRetrieval));
+        console.log("origDefault: " + JSON.stringify(wxrdWithDefaultAlias));
+        console.log("origUpdated: " + JSON.stringify(wxrdWithUpdatedAlias));
 
         expect(newRetrieval).to.eql(defaultRetrieval);
     });
@@ -58,14 +67,26 @@ describe("Wxrd Tags", function() {
         expect(testVal).to.equal("test value");
     });
 
-    it("should allow merging metadata sets", function() {
-        //TODO Fill In Test
-        //see metadata update comments for structure desired
-    });
-
     it("should get most recently updated value of for key, by timestamp", function(){
         //TODO Fill In Test
         //see metadata update comments for structure desired
+
+        const testKey = "test key";
+        const firstEntry = "test value (shouldn't show)";
+        const secondEntry = "test value second (should show)";
+
+        testWxrd.setMetaDataByKey(testKey, firstEntry);
+
+        var currentEntryValue = testWxrd.getMetaDataByKey(testKey);
+
+        expect(currentEntryValue).to.equal(firstEntry);
+
+        testWxrd.setMetaDataByKey(testKey, secondEntry);
+
+        currentEntryValue = testWxrd.getMetaDataByKey(testKey);
+
+        expect(currentEntryValue).to.equal(secondEntry);
+
     });
 
     it("should allow update of metadata by key, storing updated at timestamp", function() {

@@ -1,101 +1,72 @@
-const { v4: uuidv4 } = require('uuid');
-const allWxrdsByUuid = new Map();
+const Wxrd = require("./wxrd")
 
-function wxrdBook() {
+class WxrdBook {
 
-    findFirstByAlias = function(aliasValue) {
+    constructor(){
+
+        this.allWxrdsByUuid = new Map();
+
+    }
+
+    findFirstByAlias(aliasValue) {
         
-        for(let wxrd of allWxrdsByUuid.values()){
-            for(let alias of wxrd.aliases.values()){
+        for(let wxrd of this.allWxrdsByUuid.values()){
+            for(let alias of wxrd.getAllAliases()){
                 if(alias.aliasValue === aliasValue){
                     return wxrd;
                 }
             }
+            
         }
         
         return undefined;
     }
 
-    createWxrd = function(defaultAlias) {
+    createWxrd(defaultAlias) {
 
-        const newUuid = generateUuid();
+        const newWxrd = new Wxrd(defaultAlias);
 
-        const newWxrd = {
-            uuid: newUuid,
-            createdAt: generateTimestamp(),
-            getDefaultAliasValue: function(){
-                return this.aliases[this.aliases.length - 1].aliasValue;
-            },
-            aliases: [{
-                aliasValue: defaultAlias,
-                aliasAssignedAt: generateTimestamp()
-            }],
-            setAlias: function(aliasValue) {
-                this.aliases.push({
-                    aliasValue: aliasValue,
-                    aliasAssignedAt: generateTimestamp()
-                });
-            },
-            metaData: new Map(),
-            setMetaDataByKey: function(key, val) {
-                this.metaData.set(key, val);
-            },
-            getMetaDataByKey: function(key) {
-                return this.metaData.get(key);
-            }
-        };
-
-        allWxrdsByUuid.set(newUuid, newWxrd);
+        this.allWxrdsByUuid.set(newWxrd.uuid, newWxrd);
 
         return newWxrd;
     };
 
-    generateTimestamp = function() {
-
-        return "";
-    }
-
-
-    this.mergeByUuid = function(wxrdToMerge) {
+    mergeByUuid(wxrdToMerge) {
 
     }
 
-    this.getWxrdsByAlias = function(alias) {
+    getWxrdsByAlias(alias) {
 
-        let found = findFirstByAlias(alias);
+        let found = this.findFirstByAlias(alias);
 
         if(!found){
-            found = createWxrd(alias);
+            found = this.createWxrd(alias);
         }        
 
         return [found];
     };
 
-    this.updateAliasForUuid = function(uuid, alias) {
+    updateAliasForUuid(uuid, alias) {
          
         let found = undefined;
 
-        if(allWxrdsByUuid.has(uuid)){
-            found = allWxrdsByUuid.get(uuid);
+        if(this.allWxrdsByUuid.has(uuid)){
+            found = this.allWxrdsByUuid.get(uuid);
             found.setAlias(alias);
         }
 
         return found;
     }
 
-    this.getWxrdByUuid = function(uuid) {
-        return allWxrdsByUuid.get(uuid);
+    getWxrdByUuid(uuid) {
+        return this.allWxrdsByUuid.get(uuid);
     }
     
-    this.clearAllWxrds = function() {
+    clearAllWxrds() {
 
-        allWxrdsByUuid.clear();
+        this.allWxrdsByUuid.clear();
     };
 
-    function generateUuid(){
-
-        return uuidv4();
-    }
 }
 
-module.exports = wxrdBook;
+module.exports = WxrdBook;
