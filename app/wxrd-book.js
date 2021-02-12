@@ -10,16 +10,22 @@ class WxrdBook {
 
     findFirstByAlias(aliasValue) {
         
+        var found = undefined;
+
         for(let wxrd of this.allWxrdsByUuid.values()){
+            
             for(let alias of wxrd.getAllAliases()){
-                if(alias.aliasValue === aliasValue){
-                    return wxrd;
+                
+                if(alias && 
+                    alias.trim() == aliasValue.trim()){
+
+                    found = wxrd;
                 }
             }
             
         }
         
-        return undefined;
+        return found;
     }
 
     createWxrd(defaultAlias) {
