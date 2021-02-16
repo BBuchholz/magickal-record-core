@@ -7,7 +7,7 @@ describe("Wxrds", function() {
     
     beforeEach(function(){
 
-        testWxrd = new Wxrd()
+        testWxrd = new Wxrd();
     });
 
     it("should have a UUID", function(){
