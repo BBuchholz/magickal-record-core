@@ -1,11 +1,12 @@
-const Wxrd = require("./wxrd")
+const Wxrd = require("./wxrd");
+const magickalRecordTools = require("./magickal-record-tools");
 
 class WxrdBook {
 
     constructor(){
 
         this.allWxrdsByUuid = new Map();
-
+        this.tools = new magickalRecordTools();
     }
 
     findFirstByAlias(aliasValue) {

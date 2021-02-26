@@ -1,23 +1,26 @@
-const { v4: uuidv4 } = require('uuid');
+const magickalRecordTools = require("../app/magickal-record-tools");
+const tools = new magickalRecordTools();
 
 class Wxrd {
 
     constructor(defaultAlias) {
-        this.uuid = this.generateUuid();
-        this.createdAt = this.generateTimestamp();
+        this.uuid = tools.generateUuid();
+        this.createdAt = tools.generateTimestamp();
         this.metaData = new Map();
         this.setAlias(defaultAlias);
     }
 
-    generateTimestamp() {
+    //MOVED TO magickal-record-tools (delete when tests all pass)
+    // generateTimestamp() {
 
-        return "";
-    }
+    //     return "";
+    // }
 
-    generateUuid(){
+    //MOVED TO magickal-record-tools (delete when tests all pass)
+    // generateUuid(){
 
-        return uuidv4();
-    }
+    //     return uuidv4();
+    // }
 
 
     setMetaDataByKey(key, val) {
@@ -26,7 +29,7 @@ class Wxrd {
         }
         this.metaData.get(key).push({
             value: val,
-            valueSetAt: this.generateTimestamp()
+            valueSetAt: tools.generateTimestamp()
         });
     }
 

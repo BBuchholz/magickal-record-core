@@ -1,46 +1,26 @@
-const { v4: uuidv4 } = require('uuid');
-const allEntries = new Map();
+const WxrdBook = require("./wxrd-book");
 
-function entryLog() {
+class EntryLog extends WxrdBook {
 
-    this.createEntry = function(content) {
+    createEntry(content) {
 
-        const newUuid = generateUuid();
+        const defaultAlias = "Record Entry: " + this.tools.generateTimestamp();
+        const newEntry = this.createWxrd(defaultAlias);
 
-        const newEntry = {
-            uuid: newUuid,
-            body: content,
-            sourceUuid: "",
-            title: "",            
-            parentRecords: new Map(),
-            wxrdTags: new Map(),  
-            enteredAt: this.generateTimestamp()
-        };
+        // need to do something like this to cast to RecordEntry
+        // https://stackoverflow.com/a/9253085/670768 
 
-        allEntries.set(newUuid, newEntry);
+
+
+        newEntry.setMetaDataByKey
 
         return newEntry;
     };
 
-    this.generateTimestamp = function() {
-
-        return "";
+    clearAllEntries(){
+        this.clearAllWxrds();
     }
 
-    this.getEntryByUuid = function(uuid) {
-
-        return allEntries.get(uuid);
-    };
-    
-    this.clearAllEntries = function() {
-
-        allEntries.clear();
-    };
-
-    function generateUuid(){
-
-        return uuidv4();
-    }
 }
 
-module.exports = entryLog;
+module.exports = EntryLog;

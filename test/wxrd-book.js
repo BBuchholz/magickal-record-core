@@ -41,11 +41,6 @@ describe("Wxrd Book", function() {
         const newRetrieval = myWxrdBook.getWxrdsByAlias("A New Alias")[0];
         const defaultRetrieval = myWxrdBook.getWxrdsByAlias("A Default Alias")[0];
 
-        console.log("new: " + JSON.stringify(newRetrieval));
-        console.log("default: " + JSON.stringify(defaultRetrieval));
-        console.log("origDefault: " + JSON.stringify(wxrdWithDefaultAlias));
-        console.log("origUpdated: " + JSON.stringify(wxrdWithUpdatedAlias));
-
         expect(newRetrieval).to.eql(defaultRetrieval);
     });
 
