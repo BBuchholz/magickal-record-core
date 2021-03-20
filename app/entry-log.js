@@ -1,18 +1,24 @@
 const WxrdBook = require("./wxrd-book");
+const RecordEntry = require("./record-entry");
 
 class EntryLog extends WxrdBook {
 
+    /**
+     * 
+     * @param {string} content 
+     * @returns {RecordEntry}
+     */
     createEntry(content) {
 
         const defaultAlias = "Record Entry: " + this.tools.generateTimestamp();
-        const newEntry = this.createWxrd(defaultAlias);
+        const newWxrd = this.createWxrd(defaultAlias);
 
-        // need to do something like this to cast to RecordEntry
-        // https://stackoverflow.com/a/9253085/670768 
+        //should look like this
+        const newEntry = new RecordEntry(newWxrd);
 
 
+        newEntry.setBody(content);
 
-        newEntry.setMetaDataByKey
 
         return newEntry;
     };

@@ -1,34 +1,59 @@
 const Wxrd = require("./wxrd");
 
-class RecordEntry extends Wxrd {
+class RecordEntry{
 
-    constructor(content, title, enteredAt, sourceUuid){
-        super(title);
-
-        this.setMetaDataByKey("body", content);
-        this.setMetaDataByKey("title", title);
-        this.setMetaDataByKey("enteredAt", enteredAt);
-        this.setMetaDataByKey("sourceUuid", sourceUuid);
+    /**
+     * Wraps an existing Wxrd as a RecordEntry with all
+     * relevant methods available to it
+     * @param {Wxrd} wxrd - the wxrd for the entry
+     */
+    constructor(wxrd){
+        this.wxrd = wxrd;
     }
 
-    parentRecords(){
-        return [];
+    retrieveParentRecords(){
+        return this.wxrd.retrieveTagsByPrefix("parentRecord");
     }
 
-    body(){
-        return this.getMetaDataByKey("body");
+    addParentRecord(parentRecordUuid){
+        this.wxrd.addTagByPrefix("parentRecord", parentRecordUuid);
     }
 
-    title(){
-        return this.getMetaDataByKey("title");
+    getBody(){
+        return this.wxrd.getMetaDataByKey("body");
     }
 
-    enteredAt(){
-        return this.getMetaDataByKey("enteredAt");
+    getUuid(){
+        return this.wxrd.getUuid();
     }
 
-    sourceUuid(){
-        return this.getMetaDataByKey("sourceUuid");
+    getTitle(){
+        return this.wxrd.getMetaDataByKey("title");
+    }
+
+    getEnteredAt(){
+        return this.wxrd.getMetaDataByKey("enteredAt");
+    }
+
+    getSourceUuid(){
+        return this.wxrd.getMetaDataByKey("sourceUuid");
+    }
+
+
+    setBody(body){
+        return this.wxrd.setMetaDataByKey("body", body);
+    }
+
+    setTitle(title){
+        return this.wxrd.setMetaDataByKey("title", title);
+    }
+
+    setEnteredAt(enteredAt){
+        return this.wxrd.setMetaDataByKey("enteredAt", enteredAt);
+    }
+
+    setSourceUuid(sourceUuid){
+        return this.wxrd.setMetaDataByKey("sourceUuid", sourceUuid);
     }
 }
 

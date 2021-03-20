@@ -11,7 +11,7 @@ describe("Record Entries", function() {
 
     it("should return a list of parent records", function(){
 
-        expect(testEntry).to.have.property("parentRecords");
+        expect(testEntry).to.have.property("retrieveParentRecords");
         
     });
 
@@ -20,22 +20,22 @@ describe("Record Entries", function() {
         // if it’s copied from somewhere, otherwise the
         // current user, if signed into the Magickal record)
         
-        expect(testEntry).to.have.property("sourceUuid");
+        expect(testEntry).to.have.property("getSourceUuid");
     });
 
     it("should have an entry title", function(){
 
-        expect(testEntry).to.have.property("title");
+        expect(testEntry).to.have.property("getTitle");
     });
 
     it("should have an entry body", function(){
 
-        expect(testEntry).to.have.property("body");
+        expect(testEntry).to.have.property("getBody");
     });
 
     it("should return an entered-on timestamp", function(){
 
-        expect(testEntry).to.have.property("enteredAt");
+        expect(testEntry).to.have.property("getEnteredAt");
 
     });
 

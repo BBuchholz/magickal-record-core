@@ -23,9 +23,9 @@ describe("Entry Log", function() {
 
     it("should return previously created entry when passed generated uuid", function(){
 
-        var newlyCreatedEntry = myEntryLog.createEntry(testEntry.content);
-        var retrievedEntry = myEntryLog.getWxrdByUuid(newlyCreatedEntry.uuid);
-        expect(testEntry.content).to.equal(retrievedEntry.content);
+        var newlyCreatedEntry = myEntryLog.createEntry(testEntry.getBody());
+        var retrievedEntry = myEntryLog.getEntryByUuid(newlyCreatedEntry.getUuid());
+        expect(testEntry.getBody()).to.equal(retrievedEntry.getBody());
     });
 
     
