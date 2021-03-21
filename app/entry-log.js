@@ -27,6 +27,16 @@ class EntryLog extends WxrdBook {
         this.clearAllWxrds();
     }
 
+    /**
+     * 
+     * @param {string} uuid - the uuid of the entry to retrieve 
+     * @returns {RecordEntry} the entry matching the uuid, or undefined 
+     * if not found
+     */
+    getEntryByUuid(uuid){
+        var wxrdFound = this.getWxrdByUuid(uuid);
+        return new RecordEntry(wxrdFound);
+    }
 }
 
 module.exports = EntryLog;

@@ -35,7 +35,7 @@ class Wxrd {
 
     getMetaDataByKey(key) {
         return this.metaData.get(key)
-            .sort((a, b) => (a.valueSetAt > b.valueSetAt) ? 1 : -1)[0].value;
+            .sort((a, b) => (a.valueSetAt < b.valueSetAt) ? 1 : -1)[0].value;
     }
 
     getDefaultAliasValue(){
@@ -50,7 +50,9 @@ class Wxrd {
         return this.metaData.get("alias").map((x) => x.value);
     } 
 
-
+    getUuid(){
+        return this.uuid;
+    }
 }
 
 module.exports = Wxrd;

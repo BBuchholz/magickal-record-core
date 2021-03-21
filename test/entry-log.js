@@ -18,7 +18,7 @@ describe("Entry Log", function() {
         var contentToCreate = "this is a new entry";
         var newEntry = myEntryLog.createEntry(contentToCreate);
         
-        expect(newEntry.content).to.equal(contentToCreate);
+        expect(newEntry.getBody()).to.equal(contentToCreate);
     });
 
     it("should return previously created entry when passed generated uuid", function(){
