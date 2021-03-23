@@ -22,6 +22,13 @@ class Wxrd {
     //     return uuidv4();
     // }
 
+    retrieveTagsByPrefix(prefix){
+
+    }
+
+    addTagByPrefix(prefix, tag){
+        
+    }
 
     setMetaDataByKey(key, val) {
         if(!this.metaData.has(key)){

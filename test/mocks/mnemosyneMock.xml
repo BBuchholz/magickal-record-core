@@ -1,0 +1,40 @@
+<!-- NB: prev versions of Gauntlet XML in folder "/A_Temp"-->
+<!-- TODO: Create a mock from current data extracting a schema
+using tools at https://xml.mherman.org/ and making sure we have a mock for every
+existing tag/attribute-->
+
+quick run generates:
+
+<?xml encoding="UTF-8"?>
+
+<!ELEMENT nwd (mnemosyneSubset)>
+<!ATTLIST nwd
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT mnemosyneSubset (media)+>
+<!ATTLIST mnemosyneSubset
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT media (tag+,mediaDevice)>
+<!ATTLIST media
+  xmlns CDATA #FIXED ''
+  sha1Hash CDATA #REQUIRED>
+
+<!ELEMENT tag EMPTY>
+<!ATTLIST tag
+  xmlns CDATA #FIXED ''
+  tagValue CDATA #REQUIRED
+  taggedAt CDATA #REQUIRED
+  untaggedAt CDATA #REQUIRED>
+
+<!ELEMENT mediaDevice (path)>
+<!ATTLIST mediaDevice
+  xmlns CDATA #FIXED ''
+  description NMTOKEN #REQUIRED>
+
+<!ELEMENT path EMPTY>
+<!ATTLIST path
+  xmlns CDATA #FIXED ''
+  value CDATA #REQUIRED
+  verifiedMissing CDATA #REQUIRED
+  verifiedPresent CDATA #REQUIRED>

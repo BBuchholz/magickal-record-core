@@ -1,0 +1,41 @@
+<!-- NB: prev versions of Gauntlet XML in folder "/A_Temp"-->
+<!-- TODO: Create a mock from current data extracting a schema
+using tools at https://xml.mherman.org/ and making sure we have a mock for every
+existing tag/attribute-->
+
+
+quick run generates:
+
+
+<?xml encoding="UTF-8"?>
+
+<!ELEMENT nwd (synergySubset)>
+<!ATTLIST nwd
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT synergySubset (synergyList)>
+<!ATTLIST synergySubset
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT synergyList (synergyItem)+>
+<!ATTLIST synergyList
+  xmlns CDATA #FIXED ''
+  activatedAt CDATA #REQUIRED
+  listName NMTOKEN #REQUIRED
+  shelvedAt CDATA #REQUIRED>
+
+<!ELEMENT synergyItem (itemValue,toDo)>
+<!ATTLIST synergyItem
+  xmlns CDATA #FIXED ''
+  position CDATA #REQUIRED>
+
+<!ELEMENT itemValue (#PCDATA)>
+<!ATTLIST itemValue
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT toDo EMPTY>
+<!ATTLIST toDo
+  xmlns CDATA #FIXED ''
+  activatedAt CDATA #REQUIRED
+  archivedAt CDATA #REQUIRED
+  completedAt CDATA #REQUIRED>
