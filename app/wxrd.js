@@ -10,18 +10,6 @@ class Wxrd {
         this.setAlias(defaultAlias);
     }
 
-    //MOVED TO magickal-record-tools (delete when tests all pass)
-    // generateTimestamp() {
-
-    //     return "";
-    // }
-
-    //MOVED TO magickal-record-tools (delete when tests all pass)
-    // generateUuid(){
-
-    //     return uuidv4();
-    // }
-
     retrieveTagsByPrefix(prefix){
 
     }
